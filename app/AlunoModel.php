@@ -13,6 +13,7 @@ class AlunoModel extends Model
     protected $fillable = [
         'alun_id',
         'alun_nome',
+        'alun_email',
         'alun_nascimento',
         'alun_cpf',
         'alun_rg',

@@ -22,8 +22,22 @@ class AlunoRepository extends BaseRepository
      */
     public function salvarDados(Request $request)
     {
-        $dados = $request->all();
-        dd($dados);
+        return $this->salvar(
+            new AlunoModel(),
+            $request
+        );
+    }
+
+    public function salvar($alunoModel, Request $request)
+    {
+        $dadosAluno = $request->all();
+        $alunoModel->alun_nome = $dadosAluno['alun_nome'];
+        $alunoModel->alun_rg = $dadosAluno['alun_rg'];
+        $alunoModel->alun_cpf = $dadosAluno['alun_cpf'];
+        $alunoModel->alun_nascimento = $dadosAluno['alun_nascimento'];
+        $alunoModel->alun_email = $dadosAluno['alun_email'];
+        $alunoModel->alun_fone = $dadosAluno['alun_fone'];
+        $alunoModel->save();
     }
 
 
