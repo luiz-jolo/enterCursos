@@ -43,6 +43,8 @@
                             </div>
                             <button type="submit" class="btn btn-primary">Salvar</button>
                         </form>
+                        <br>
+                        <a href="{{ route('aluno.index') }}"><button class="btn btn-outline-primary">Retornar</button></a>
 
                     </div>
                 </div>

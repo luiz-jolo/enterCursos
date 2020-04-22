@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AlunoModel;
 use App\Repositories\AlunoRepository;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,8 @@ class AlunoController extends Controller
      */
     public function index()
     {
-        return view('aluno.index');
+        return view('aluno.index')
+            ->with('alunos', AlunoModel::all());
     }
 
     /**
