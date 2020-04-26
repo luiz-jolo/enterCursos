@@ -5,7 +5,9 @@ namespace App\Repositories;
 
 
 use App\AlunoModel;
+use App\Http\Requests\AlunoRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Prettus\Repository\Eloquent\BaseRepository;
 
 class AlunoRepository extends BaseRepository
@@ -20,17 +22,17 @@ class AlunoRepository extends BaseRepository
     /**
      * @param Request $request
      */
-    public function salvarDados(Request $request)
+    public function salvarDados(AlunoRequest $alunoRequest)
     {
         return $this->salvar(
             new AlunoModel(),
-            $request
+            $alunoRequest
         );
     }
 
-    public function salvar($alunoModel, Request $request)
+    public function salvar($alunoModel, AlunoRequest $alunoRequest)
     {
-        $dadosAluno = $request->all();
+        $dadosAluno = $alunoRequest->all();
         $alunoModel->alun_nome = $dadosAluno['alun_nome'];
         $alunoModel->alun_rg = $dadosAluno['alun_rg'];
         $alunoModel->alun_cpf = $dadosAluno['alun_cpf'];
@@ -38,6 +40,9 @@ class AlunoRepository extends BaseRepository
         $alunoModel->alun_email = $dadosAluno['alun_email'];
         $alunoModel->alun_fone = $dadosAluno['alun_fone'];
         $alunoModel->save();
+
+        return $alunoModel;
+
     }
 
 

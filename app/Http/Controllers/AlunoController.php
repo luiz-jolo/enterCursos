@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\AlunoModel;
+use App\Http\Requests\AlunoRequest;
 use App\Repositories\AlunoRepository;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,7 @@ class AlunoController extends Controller
     public function index()
     {
         return view('aluno.index')
-            ->with('alunos', AlunoModel::all());
+            ->with('alunos', AlunoModel::paginate(5));
     }
 
     /**
@@ -39,13 +40,15 @@ class AlunoController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
-    public function store(Request $request)
+    public function store(AlunoRequest $alunoRequest)
     {
         try {
-            $resposta = $this->alunoRepository->salvarDados($request);
-            return response()->json($resposta);
+            $resposta = $this->alunoRepository->salvarDados($alunoRequest);
+//            return response()->json($resposta);
+            return redirect('/aluno')->with('toast_success','Cadasto Correto');
+
         } catch (\Exception $e){
             echo 'erro na execucao store controller aluno', $e->getMessage(), "\n";
         }

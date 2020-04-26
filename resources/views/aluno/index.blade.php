@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+
+    @if(session('success_message'))
+        <div class="alert alert-success">
+            {{ session('success_message') }}
+        </div>
+    @endif
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -32,6 +39,7 @@
                                        @endforeach
                                    </tbody>
                                 </table>
+                                {{ $alunos->links() }}
                             </div>
                         </div>
 
@@ -40,4 +48,6 @@
             </div>
         </div>
     </div>
+
+
 @endsection
