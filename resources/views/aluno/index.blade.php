@@ -10,7 +10,7 @@
 
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <div class="card">
                     <div class="card-header">Dashboard do Aluno</div>
                     <div class="card-body">
@@ -26,6 +26,7 @@
                                            <th>Nome</th>
                                            <th>email</th>
                                            <th>CPF</th>
+                                           <th>Ação</th>
                                        </tr>
                                    </thead>
                                    <tbody>
@@ -35,6 +36,9 @@
                                             <td>{{ $aluno->alun_nome }}</td>
                                             <td>{{ $aluno->alun_email }}</td>
                                             <td>{{ $aluno->alun_cpf }}</td>
+                                            <td>
+                                                <a href="{{ route('aluno.edit', $aluno->alun_id) }}">Editar</a> | <a href="#">Excluir</a>
+                                            </td>
                                        </tr>
                                        @endforeach
                                    </tbody>

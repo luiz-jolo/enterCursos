@@ -47,7 +47,7 @@ class AlunoController extends Controller
         try {
             $resposta = $this->alunoRepository->salvarDados($alunoRequest);
 //            return response()->json($resposta);
-            return redirect('/aluno')->with('toast_success','Cadasto Correto');
+            return redirect('/aluno')->with('success','Cadasto Correto');
 
         } catch (\Exception $e){
             echo 'erro na execucao store controller aluno', $e->getMessage(), "\n";
@@ -79,7 +79,8 @@ class AlunoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $registro = AlunoModel::where('alun_id', $id)->first();
+        return view('aluno/editar', compact('registro'));
     }
 
     /**

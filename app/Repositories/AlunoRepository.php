@@ -19,8 +19,10 @@ class AlunoRepository extends BaseRepository
     {
         return AlunoModel::class;
     }
+
     /**
-     * @param Request $request
+     * @param AlunoRequest $alunoRequest
+     * @return mixed
      */
     public function salvarDados(AlunoRequest $alunoRequest)
     {
