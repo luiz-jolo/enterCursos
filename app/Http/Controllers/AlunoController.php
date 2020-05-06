@@ -37,17 +37,14 @@ class AlunoController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
+     * @param AlunoRequest $alunoRequest
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(AlunoRequest $alunoRequest)
     {
         try {
-            $resposta = $this->alunoRepository->salvarDados($alunoRequest);
-//            return response()->json($resposta);
-            return redirect('/aluno')->with('success','Cadasto Correto');
+            $this->alunoRepository->salvarDados($alunoRequest);
+            return redirect('/aluno')->with('success','Cadastro Realizado com sucesso');
 
         } catch (\Exception $e){
             echo 'erro na execucao store controller aluno', $e->getMessage(), "\n";
@@ -90,9 +87,14 @@ class AlunoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AlunoRequest $alunoRequest, $id)
     {
-        //
+        try{
+            $this->alunoRepository->atualizarDados($alunoRequest, $id);
+            return redirect('/aluno')->with('success','Atualização realizada com sucesso!');
+        }catch (\Exception $e){
+            echo 'erro na execucao do update do aluno controller', $e->getMessage(), "\n";
+        }
     }
 
     /**
@@ -103,6 +105,11 @@ class AlunoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $this->alunoRepository->deletar($id);
+            return redirect('/aluno')->with('success', 'Aluno excluido!');
+        }catch (\Exception $e){
+            echo 'erro na execucao do destroy do aluno controller', $e->getMessage(), "\n";
+        }
     }
 }

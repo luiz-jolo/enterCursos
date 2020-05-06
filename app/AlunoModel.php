@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class AlunoModel extends Model
 {
@@ -19,5 +20,7 @@ class AlunoModel extends Model
         'alun_rg',
         'alun_observacao'
     ];
+
+    use SoftDeletes;
 
 }

@@ -22,6 +22,7 @@
 
                         <form method="post" action="{{ route('aluno.update', $registro->alun_id) }}">
                             @csrf
+                            @method('PUT')
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="nome">Nome</label>

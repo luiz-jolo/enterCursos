@@ -32,6 +32,11 @@ class AlunoRepository extends BaseRepository
         );
     }
 
+    /**
+     * @param $alunoModel
+     * @param AlunoRequest $alunoRequest
+     * @return mixed
+     */
     public function salvar($alunoModel, AlunoRequest $alunoRequest)
     {
         $dadosAluno = $alunoRequest->all();
@@ -44,8 +49,31 @@ class AlunoRepository extends BaseRepository
         $alunoModel->save();
 
         return $alunoModel;
-
     }
+    /**
+     * @param AlunoRequest $alunoRequest
+     * @param $id
+     * @return mixed
+     */
+    public function atualizarDados(AlunoRequest $alunoRequest, $id)
+    {
+        $alunoModel = AlunoModel::findOrFail($id);
+
+        return $this->salvar(
+            $alunoModel,
+            $alunoRequest
+        );
+    }
+
+    /**
+     * @param $id
+     * @return int
+     */
+    public function deletar($id)
+    {
+        return $this->findOrFail($id)->delete();
+    }
+
 
 
 }

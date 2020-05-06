@@ -37,7 +37,12 @@
                                             <td>{{ $aluno->alun_email }}</td>
                                             <td>{{ $aluno->alun_cpf }}</td>
                                             <td>
-                                                <a href="{{ route('aluno.edit', $aluno->alun_id) }}">Editar</a> | <a href="#">Excluir</a>
+                                                <a class="btn btn-sm btn-warning" href="{{ route('aluno.edit', $aluno->alun_id) }}">Editar</a>
+                                                <form action="{{ route('aluno.destroy', $aluno->alun_id) }}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-sm btn-danger" type="submit">Deletar</button>
+                                                </form>
                                             </td>
                                        </tr>
                                        @endforeach
