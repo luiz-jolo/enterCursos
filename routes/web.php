@@ -2,9 +2,11 @@
 use RealRashid\SweetAlert\Facades\Alert;
 
 Route::get('/', function () {
-//    Alert::success('Success title', 'Success Message');
-//    alert()->info('InfoAlert', 'Lorem Ipsun Dolor sit amet');
-    toast('Success Toast', 'success');
+// example:
+    alert()->question('Are you sure?','You won\'t be able to revert this!')
+        ->showConfirmButton('Yes! Delete it', '#3085d6')
+        ->showCancelButton('Cancel', '#aaa')->reverseButtons();
+
     return view('welcome');
 });
 

@@ -41,7 +41,7 @@
                                                 <form action="{{ route('aluno.destroy', $aluno->alun_id) }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button class="btn btn-sm btn-danger" type="submit">Deletar</button>
+                                                    <button class="btn btn-sm btn-danger" type="submit" onclick="confirmDelete()" >Deletar</button>
                                                 </form>
                                             </td>
                                        </tr>
@@ -57,6 +57,16 @@
             </div>
         </div>
     </div>
-
+    <script>
+        function confirmDelete(){
+            if(confirm("Deletar o aluno?")){
+                return true
+            }
+            else{
+                alert('ops')
+                return false;
+            }
+        }
+    </script>
 
 @endsection

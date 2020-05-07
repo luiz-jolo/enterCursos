@@ -17,6 +17,7 @@ class AlunoModel extends Model
         'alun_email',
         'alun_nascimento',
         'alun_cpf',
+        'alun_fone',
         'alun_rg',
         'alun_observacao'
     ];

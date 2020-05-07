@@ -167,6 +167,7 @@ return [
          */
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
